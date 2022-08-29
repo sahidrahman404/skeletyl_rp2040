@@ -1,0 +1,41 @@
+#+title: Qmk Firmware for Skeletyl with RP2040 Board
+
+** Pin Configuration
+#+begin_src C
+/* Key matrix configuration. */
+#define MATRIX_ROW_PINS \
+    { GP17, GP18, GP19, GP20}
+#define MATRIX_COL_PINS \
+    { GP14, GP13, GP12, GP11, GP10 }
+
+/* serial.c configuration (for split keyboard). */
+#define SOFT_SERIAL_PIN GP9
+
+/* RGB settings. */
+#define RGB_DI_PIN GP0
+
+/* Reset. */
+#define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_LED GP16
+#+end_src
+
+** Flashing
+1. Checkout to upstream/develop branch on your qmk directory
+   #+begin_src bash
+git fetch origin
+git switch -c skeletyl-rp2040 upstream/develop
+make git-submodule
+   #+end_src
+2. Clone this repo to your qmk's keyboard directory
+   #+begin_src bash
+git clone git@github.com:sahidrahman404/skeletyl_rp2040.git qmk_firmware/keyboards/skeletyl
+   #+end_src
+3. Copy the .uf2 file into the RP2040's mass storage
+   a. If you want to use miryoku layout you should replace all RESET KEY with QK_BOOT
+      #+begin_src bash
+sed -i 's/RESET,/QK_BOOT,/g' ~/qmk_firmware/users/manna-harbour_miryoku/miryoku_babel/miryoku_alternatives.h
+      #+end_src
+   b. Compile the keyboard
+      #+begin_src bash
+qmk compile -kb skeletyl/rp2040 -km manna-harbour_miryoku
+      #+end_src
+   c. Copy the .uf2 file into the RP2040's mass storage
