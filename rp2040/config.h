@@ -19,9 +19,9 @@
 
 /* Key matrix configuration. */
 #define MATRIX_ROW_PINS \
-    { GP17, GP18, GP19, GP20}
+    { GP20, GP19, GP18, GP17 }
 #define MATRIX_COL_PINS \
-    { GP14, GP13, GP12, GP11, GP10 }
+    { GP10, GP11, GP12, GP13, GP14 }
 
 /* Handedness. */
 #define MASTER_RIGHT
