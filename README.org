@@ -42,17 +42,11 @@
 #+end_src
 
 ** Flashing
-*** 1. Checkout to upstream/develop branch on your qmk directory
-   #+begin_src bash
-git fetch origin
-git switch -c skeletyl-rp2040 upstream/develop
-make git-submodule
-   #+end_src
-*** 2. Clone this repo to your qmk's keyboard directory
+*** 1. Clone this repo to your qmk's keyboard directory
    #+begin_src bash
 git clone git@github.com:sahidrahman404/skeletyl_rp2040.git ~/qmk_firmware/keyboards/skeletyl
    #+end_src
-*** 3. Copy the .uf2 file into the RP2040's mass storage
+*** 2. Copy the .uf2 file into the RP2040's mass storage
 **** a. If you want to use miryoku layout you should replace all RESET KEY with QK_BOOT
       #+begin_src bash
 sed -i 's/RESET,/QK_BOOT,/g' ~/qmk_firmware/users/manna-harbour_miryoku/miryoku_babel/miryoku_alternatives.h
